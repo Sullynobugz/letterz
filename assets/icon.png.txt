@@ -1,0 +1,2 @@
+This is a placeholder file. For development, Expo will use a default icon.
+To add a real icon, replace this with an actual 1024x1024 PNG image named icon.png

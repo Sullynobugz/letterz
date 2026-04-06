@@ -1,0 +1,23 @@
+{
+  "expo": {
+    "name": "Letterz",
+    "slug": "letterz",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.letterz.app"
+    },
+    "android": {
+      "package": "com.letterz.app"
+    },
+    "scheme": "letterz",
+    "plugins": [
+      "expo-router"
+    ]
+  }
+}
