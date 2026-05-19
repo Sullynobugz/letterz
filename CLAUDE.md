@@ -85,13 +85,36 @@ npm run build          # EAS Build (Production)
 > - **"Mach weiter"**: Den obersten offenen Punkt aus "Nächste Schritte" aufgreifen und umsetzen, dann Log aktualisieren und neue Schritte vorschlagen
 
 ### Nächste Schritte
-<!-- Priorisierte TODO-Liste — wird nach Rücksprache mit dem Nutzer befüllt -->
-- [ ] (noch nicht definiert — bitte kurz besprechen)
+
+#### Accounts (Einmalig, Voraussetzung für Release)
+- [ ] Apple Developer Account anlegen — 99€/Jahr, Genehmigung kann 1–2 Tage dauern
+- [ ] Google Play Developer Account anlegen — 25$ einmalig
+
+#### Design & Assets
+- [ ] App Icon erstellen (1024×1024px PNG, ohne Transparenz)
+- [ ] Splash Screen erstellen
+
+#### Rechtliches
+- [ ] Privacy Policy erstellen (Template reicht, muss online gehostet sein)
+- [ ] Terms of Service erstellen (optional, aber empfohlen)
+
+#### App Store Metadaten (ASO)
+- [ ] App-Titel + Untertitel (iOS) / Kurzbeschreibung (Android) festlegen
+- [ ] Vollständige App-Beschreibung (DE + EN) schreiben
+- [ ] Keywords recherchieren und eintragen
+- [ ] Screenshots für Store-Seite erstellen (mind. 3 pro Plattform)
+
+#### Build & Release
+- [ ] EAS Build konfigurieren (eas.json, eas-cli installieren)
+- [ ] Testbuild auf eigenem Gerät testen (EAS Internal Distribution)
+- [ ] iOS: App über EAS Submit einreichen
+- [ ] Android: APK/AAB manuell im Play Console hochladen
 
 ### Log
 <!-- Neueste Einträge zuerst -->
 | Datum | Was & Warum |
 |-------|-------------|
+| 2026-05-19 | Nächste Schritte definiert — Release-Plan nach Projektanalyse |
 | 2026-05-07 | CLAUDE.md angelegt — Projektdokumentation initialisiert |
 
 
