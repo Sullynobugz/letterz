@@ -1,5 +1,8 @@
 # Letterz — Buchstaben-Partyspiel
 
+## Status
+Priorität 1
+
 ## Was diese App ist
 Minimalistisches React Native Partyspiel für 2+ Spieler. Spieler wählen reihum Buchstaben aus einem Kreis und müssen Wörter nennen, die mit dem gewählten Buchstaben für eine vorgegebene Kategorie anfangen. Zwei Modi: Punkte (je schneller, desto mehr Punkte) und KO (wer Zeit überschreitet, scheidet aus). Zweisprachig (Deutsch/Englisch), kein Wörterbuch-Check — Ehrensystem.
 
