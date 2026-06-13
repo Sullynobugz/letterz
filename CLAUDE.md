@@ -17,7 +17,7 @@ Minimalistisches React Native Partyspiel für 2+ Spieler. Spieler wählen reihum
 - **Zielplattformen**: iOS, Android
 
 ## Aktueller Stand
-Spielbares MVP. Setup-Screen (Konfiguration) und Game-Screen (Spielablauf) implementiert. Beide Modi (Punkte, KO) funktionieren. Timer, Buchstabenkreis und Ergebnisanzeige vorhanden. Grundlegende i18n für EN/DE. AsyncStorage für Settings-Persistenz.
+Spielbares MVP. Setup-Screen (Konfiguration) und Game-Screen (Spielablauf) implementiert. Beide Modi (Punkte, KO) funktionieren. Timer, Buchstabenkreis und Ergebnisanzeige vorhanden. Grundlegende i18n für EN/DE. AsyncStorage für Settings-Persistenz. Vordefinierte Kategorie-Vorschläge (CategorySuggestions) und Soundeffekte (expo-audio) inkl. An/Aus-Toggle in den Settings.
 
 ## Architektur
 ```
@@ -40,8 +40,10 @@ letterz/
 │   ├── types/index.ts         # TypeScript Definitionen
 │   └── utils/
 │       ├── normalization.ts   # Umlaut-Normalisierung (ä→ae etc.), Buchstaben-Pool
-│       └── scoring.ts         # Punkte-Berechnung (zeitbasiert)
-├── assets/                    # App-Icons, Splash
+│       ├── scoring.ts         # Punkte-Berechnung (zeitbasiert)
+│       └── sound.ts           # Soundeffekt-Manager (expo-audio, Preload + playSound)
+├── assets/
+│   └── sounds/                # Synthetisierte WAV-Effekte (select/correct/timeup/gameover)
 └── app.json                   # Expo Konfiguration
 ```
 
@@ -58,8 +60,8 @@ npm run build          # EAS Build (Production)
 ```
 
 ## Nächste Schritte
-1. **Kategorien-System**: Vordefinierte Kategorie-Liste (Tiere, Städte, Filme...) statt Freitext
-2. **Sound-Effekte**: Audio-Feedback bei Timer-Ende, richtigem Wort etc.
+1. ✅ **Kategorien-System**: Vordefinierte Kategorie-Liste (CategorySuggestions, 10 Kategorien EN/DE)
+2. ✅ **Sound-Effekte**: Audio-Feedback (select/correct/timeup/gameover) via expo-audio, Toggle in Settings
 3. **Mehr Sprachen**: Spanisch, Französisch-Support in i18n hinzufügen
 4. **App-Store Veröffentlichung**: EAS Submit für iOS und Android App Stores
 5. **Haptisches Feedback**: Vibration bei Timer-Ende (Expo Haptics)
@@ -117,6 +119,7 @@ npm run build          # EAS Build (Production)
 <!-- Neueste Einträge zuerst -->
 | Datum | Was & Warum |
 |-------|-------------|
+| 2026-06-13 | Soundeffekte implementiert (expo-audio) — synthetisierte WAVs (select/correct/timeup/gameover) in assets/sounds, soundManager (src/utils/sound.ts) mit Preload + No-op-Fallback, in gameStore-Actions verdrahtet, soundEnabled-Setting + Toggle im Setup (EN/DE), in _layout.tsx vorgeladen. Kategorien-System war bereits via CategorySuggestions vorhanden. tsc --noEmit grün. |
 | 2026-05-19 | Nächste Schritte definiert — Release-Plan nach Projektanalyse |
 | 2026-05-07 | CLAUDE.md angelegt — Projektdokumentation initialisiert |
 
