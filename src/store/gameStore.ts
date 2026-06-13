@@ -3,6 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { Settings, GameState, Player, Turn, SetupData } from '../types';
 import { getAllLetters, validateAnswer } from '../utils/normalization';
 import { calculatePoints } from '../utils/scoring';
+import { playSound, setSoundEnabled as setSoundManagerEnabled } from '../utils/sound';
 
 interface GameStore {
   settings: Settings;
@@ -12,6 +13,7 @@ interface GameStore {
   setMode: (mode: Settings['mode']) => void;
   setTurnSeconds: (seconds: number) => void;
   setSkipHardLetters: (skip: boolean) => void;
+  setSoundEnabled: (enabled: boolean) => void;
   
   startGame: (setup: SetupData) => void;
   selectLetter: (letter: string) => void;
@@ -38,6 +40,7 @@ const defaultSettings: Settings = {
   mode: 'points',
   turnSeconds: 15,
   skipHardLetters: false,
+  soundEnabled: true,
 };
 
 const defaultGame: GameState = {
@@ -77,6 +80,12 @@ export const useGameStore = create<GameStore>((set, get) => ({
     set((state) => ({ settings: { ...state.settings, skipHardLetters: skip } }));
     get().saveSettings();
   },
+
+  setSoundEnabled: (enabled) => {
+    set((state) => ({ settings: { ...state.settings, soundEnabled: enabled } }));
+    setSoundManagerEnabled(enabled);
+    get().saveSettings();
+  },
   
   startGame: (setup) => {
     const { settings } = get();
@@ -107,6 +116,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
   },
   
   selectLetter: (letter) => {
+    playSound('select');
     set((state) => ({
       game: { ...state.game, selectedLetter: letter },
     }));
@@ -160,11 +170,13 @@ export const useGameStore = create<GameStore>((set, get) => ({
         timerRunning: false,
       },
     }));
-    
+
+    playSound('correct');
+
     setTimeout(() => {
       get().nextTurn();
     }, 300);
-    
+
     return { success: true };
   },
   
@@ -172,7 +184,9 @@ export const useGameStore = create<GameStore>((set, get) => ({
     const { game, settings } = get();
     const currentPlayer = game.players[game.currentPlayerIndex];
     if (!currentPlayer) return;
-    
+
+    playSound('timeup');
+
     if (settings.mode === 'ko') {
       set((state) => ({
         game: {
@@ -236,6 +250,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
   },
   
   endGame: () => {
+    playSound('gameover');
     set((state) => ({
       game: {
         ...state.game,
@@ -309,6 +324,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
         const deviceLang = getDeviceLanguage();
         set({ settings: { ...defaultSettings, language: deviceLang } });
       }
+      setSoundManagerEnabled(get().settings.soundEnabled);
     } catch (error) {
       if (__DEV__) {
         console.error('Failed to load settings:', error);

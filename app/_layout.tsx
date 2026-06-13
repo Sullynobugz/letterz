@@ -5,6 +5,7 @@ import { useGameStore } from '../src/store/gameStore';
 import { setLanguage } from '../src/i18n';
 import { ErrorBoundary } from '../src/components/ErrorBoundary';
 import { COLORS } from '../src/constants/colors';
+import { initSounds } from '../src/utils/sound';
 
 export default function RootLayout() {
   const loadSettings = useGameStore((state) => state.loadSettings);
@@ -12,6 +13,8 @@ export default function RootLayout() {
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
+    // Preload sound effects (non-blocking, failures are swallowed internally).
+    initSounds();
     loadSettings()
       .catch((error) => {
         if (__DEV__) {

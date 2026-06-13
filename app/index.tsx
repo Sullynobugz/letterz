@@ -27,6 +27,7 @@ export default function SetupScreen() {
     setMode,
     setTurnSeconds,
     setSkipHardLetters,
+    setSoundEnabled,
     startGame,
     loadLastPlayers,
     saveLastPlayers,
@@ -219,6 +220,14 @@ export default function SetupScreen() {
                 value={settings.skipHardLetters}
                 onValueChange={setSkipHardLetters}
                 accessibilityLabel={t('setup.skipHardLetters')}
+              />
+            </View>
+            <View style={styles.switchRow}>
+              <Text style={styles.switchLabel}>{t('setup.sound')}</Text>
+              <Switch
+                value={settings.soundEnabled}
+                onValueChange={setSoundEnabled}
+                accessibilityLabel={t('setup.sound')}
               />
             </View>
           </View>

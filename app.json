@@ -17,7 +17,8 @@
     },
     "scheme": "letterz",
     "plugins": [
-      "expo-router"
+      "expo-router",
+      "expo-audio"
     ]
   }
 }

@@ -9,6 +9,7 @@ export interface Settings {
   mode: GameMode;
   turnSeconds: number;
   skipHardLetters: boolean;
+  soundEnabled: boolean;
 }
 
 export interface Player {
